@@ -1,0 +1,473 @@
+/* Main graph container styling */
+.graph-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.graph-canvas {
+  width: 100%;
+  height: 100%;
+  cursor: crosshair;
+}
+
+.graph-toolbar {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  gap: 8px;
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 8px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.graph-toolbar button {
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  padding: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #666;
+  transition: all 0.2s ease;
+}
+
+.graph-toolbar button:hover {
+  background-color: #f5f5f5;
+  color: #333;
+}
+
+/* Controls section (zoom and fullscreen buttons) */
+.controls {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Control button styling */
+.controls button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  font-size: 18px;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s;
+  border: none; /* Remove border */
+  width: 40px;
+  height: 40px;
+}
+
+.controls button:hover {
+  background-color: rgba(255, 255, 255, 1);
+}
+
+/* Icons inside the buttons */
+.controls button svg {
+  width: 20px;
+  height: 20px;
+  color: #333;
+  transition: color 0.3s;
+}
+
+.controls button:hover svg {
+  color: #007bff; /* Change color on hover */
+}
+
+.graph-controls {
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 1001;
+}
+
+.control-btn {
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: #333;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  font-size: 1.1em;
+}
+
+.control-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateX(-2px);
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+.control-btn:active {
+  transform: translateX(0);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.control-btn.active {
+  background: #e8f0fe;
+  color: #1a73e8;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.control-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+.settings-panel {
+  position: absolute;
+  top: 70px;
+  right: 0;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 8px 0;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  z-index: 1000;
+  min-width: 200px;
+}
+
+.settings-option {
+  margin: 0;
+}
+
+.settings-option label {
+  display: flex;
+  align-items: center;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  gap: 12px;
+  color: #333;
+  font-size: 14px;
+}
+
+.settings-option label:hover {
+  background-color: #f5f5f5;
+}
+
+.settings-icon {
+  width: 14px;
+  height: 14px;
+  color: #666;
+  flex-shrink: 0;
+}
+
+.settings-option input[type="checkbox"],
+.settings-option input[type="radio"] {
+  margin: 0;
+  cursor: pointer;
+  order: 1;
+  margin-left: auto;
+}
+
+.grid-options {
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+  padding: 4px 0;
+  margin: 4px 0;
+}
+
+.grid-options label {
+  padding: 6px 16px;
+}
+
+/* Style for checkmarks and radio buttons */
+.settings-option input[type="checkbox"],
+.settings-option input[type="radio"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  border: 2px solid #999;
+  border-radius: 2px;
+  outline: none;
+  transition: all 0.2s;
+  position: relative;
+  cursor: pointer;
+}
+
+.settings-option input[type="radio"] {
+  border-radius: 50%;
+}
+
+.settings-option input[type="checkbox"]:checked,
+.settings-option input[type="radio"]:checked {
+  background-color: #4CAF50;
+  border-color: #4CAF50;
+}
+
+.settings-option input[type="checkbox"]:checked::after {
+  content: '✓';
+  color: white;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 12px;
+}
+
+.settings-option input[type="radio"]:checked::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 8px;
+  height: 8px;
+  background-color: white;
+  border-radius: 50%;
+}
+
+.context-menu {
+  background: white;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  padding: 8px;
+  z-index: 1000;
+}
+
+.context-menu button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 8px 12px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: #333;
+  transition: background-color 0.2s ease;
+}
+
+.context-menu button:hover {
+  background-color: #f5f5f5;
+}
+
+.color-picker {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 8px;
+  border-top: 1px solid #e0e0e0;
+  padding-top: 8px;
+}
+
+.color-picker button {
+  padding: 6px 12px;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.color-picker button:hover {
+  opacity: 0.8;
+}
+
+.graph-area {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1000;
+  background: white;
+}
+
+.graph-area canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Hide scrollbars but keep functionality */
+::-webkit-scrollbar {
+  display: none;
+}
+
+* {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.settings-dropdown {
+  position: absolute;
+  top: 20px;
+  right: 2px;
+  background: #ffffff; /* White background */
+  border: 1px solid #ccc; /* Subtle border */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Softer shadow */
+  padding: 15px; /* Remove padding for clean item alignment */
+  z-index: 1000;
+  min-width: 250px; /* Ensure consistent width */
+  font-family: Arial, sans-serif; /* Clean and modern font */
+}
+
+.settings-dropdown ul {
+  list-style: none;
+  margin: 0;
+  padding: 10px;
+}
+
+.settings-dropdown ul li {
+  padding: 10px 15px; /* Consistent spacing */
+  cursor: pointer;
+  font-size: 14px; /* Readable font size */
+  color: #333; /* Neutral text color */
+  transition: background-color 0.2s, color 0.2s;
+  display: flex;
+  align-items: center; /* Align text and icons */
+}
+
+.settings-dropdown ul li:hover {
+  background-color: #f8f9fa; /* Light gray hover effect */
+}
+
+.settings-dropdown ul li svg {
+  margin-right: 10px; /* Space between icons and text */
+  width: 16px;
+  height: 16px;
+}
+
+.settings-dropdown ul li.checked {
+  color: #007bff; /* Highlighted color for checked items */
+  font-weight: bold;
+}
+
+.settings-dropdown .submenu {
+  padding-left: 20px; /* Indentation for submenu */
+}
+
+.settings-dropdown .submenu ul li {
+  padding: 8px 10px;
+}
+
+.settings-dropdown ul li.separator {
+  height: 1px;
+  margin: 5px 0;
+  background-color: #ddd; /* Divider for clarity */
+}
+
+.settings-dropdown button {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff; /* Button background color */
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.settings-dropdown button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Mobile and smaller devices (max-width: 768px) */
+@media (max-width: 768px) {
+  .graph-container {
+    width: 100vw; /* Ensure full width */
+    height: 100vh; /* Ensure full height */
+    margin-top: 0;
+    margin-left: 0;
+  }
+
+  .controls {
+    top: 10px;
+    right: 10px;
+  }
+
+  .controls button {
+    font-size: 14px;
+    padding: 8px;
+    width: 35px;
+    height: 35px;
+  }
+
+  .controls button svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+/* For larger screens (min-width: 769px) */
+@media (min-width: 769px) {
+  .graph-container {
+    width: 100vw; /* Full width for larger screens */
+    height: 100vh; /* Full height for larger screens */
+  }
+
+  .controls {
+    top: 20px; /* Adjusted margin from the top */
+    right: 20px;
+  }
+
+  .controls button {
+    font-size: 18px;
+    padding: 12px;
+    width: 40px;
+    height: 40px;
+  }
+
+  .controls button svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+/* Update the geometry-container and canvas styles */
+.geometry-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: white;
+}
+
+.geometry-container canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+  touch-action: none;
+  user-select: none;
+}
+
+.extremum-tooltip {
+  font-family: Arial, sans-serif;
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 5px 10px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  pointer-events: none;
+  white-space: nowrap;
+}
